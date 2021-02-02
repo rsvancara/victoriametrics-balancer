@@ -1,0 +1,26 @@
+[Unit]
+Description=Description=VMWriter service
+After=network.target
+
+[Service]
+Type=simple
+LimitNOFILE=2097152
+User=vmwriter
+Group=vmwriter
+ExecStart=/usr/local/bin/vmwriter \
+    --clustertag victoriametrics
+SyslogIdentifier=victoriametrics
+Restart=always
+
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+
+ProtectSystem=full
+
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target
